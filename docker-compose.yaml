@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: flask run
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_RUN_HOST=0.0.0.0
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: jake
+      POSTGRES_PASSWORD: jake2002
+      POSTGRES_DB: smartdocumentanalyzerdb
+    ports:
+      - "5432:5432"
