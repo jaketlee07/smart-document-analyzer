@@ -1,7 +1,3 @@
-Creating a README for your project is crucial for explaining how it works, its features, and how others can set it up and use it. Below is a template for a README file for your Smart Document Analyzer project. You can customize this template to fit the specific details and requirements of your project.
-
----
-
 # Smart Document Analyzer
 
 ## Project Overview
