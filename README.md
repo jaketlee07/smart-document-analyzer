@@ -57,7 +57,10 @@ After installation, navigate to `http://localhost:8000` in your web browser to a
 
 ## Development
 
-For local development, follow the setup instructions mentioned above. Ensure you have all the required dependencies installed.
+Here are some images of the working Docker
+<img width="1440" alt="Screenshot 2024-03-30 at 12 47 38 AM" src="https://github.com/jaketlee07/smart-document-analyzer/assets/54076176/fc27347b-5d6d-402b-abf4-4c02afa1b7ce">
+<img width="908" alt="Screenshot 2024-03-30 at 12 48 31 AM" src="https://github.com/jaketlee07/smart-document-analyzer/assets/54076176/5a6aaff8-a7b5-4a54-ac03-3912394d4eae">
+
 
 ## License
 
