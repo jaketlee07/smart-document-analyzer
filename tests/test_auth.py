@@ -5,7 +5,7 @@ from app.auth.models import User
 
 class AuthTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(config_class='TestConfig')
+        self.app = create_app(config_class='config.TestConfig')
         self.client = self.app.test_client()
         with self.app.app_context():
             db.create_all()
