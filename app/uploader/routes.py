@@ -18,7 +18,12 @@ def upload():
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+        upload_dir = os.path.join(current_app.config['UPLOAD_FOLDER'])
+        
+        if not os.path.exists(upload_dir):
+            os.makedirs(upload_dir)
+
+        filepath = os.path.join(upload_dir, filename)
         file.save(filepath)
 
         # Add entry to database

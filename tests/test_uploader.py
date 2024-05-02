@@ -2,10 +2,12 @@ import os
 import unittest
 from werkzeug.datastructures import FileStorage
 from app import create_app, db
+from app.config import TestConfig
+from io import BytesIO
 
 class UploaderTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(config_class='TestConfig')
+        self.app = create_app(config_class=TestConfig)
         self.client = self.app.test_client()
         with self.app.app_context():
             db.create_all()
