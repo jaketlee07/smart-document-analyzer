@@ -8,4 +8,4 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/')
 def home():
     logging.debug("Rendering the uploader_form.html template")
-    return render_template('uploader_form.html')
+    return render_template('home.html')

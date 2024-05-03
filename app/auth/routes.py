@@ -11,16 +11,22 @@ def register():
     username = request.json.get('username')
     password = request.json.get('password')
     
-    if User.query.filter_by(username=username).first():
-        return jsonify({'error': 'Username already exists'}), 400
+    if not username or not password:
+        return jsonify({"error": "Missing username or password"}), 400
 
-    new_user = User(username=username)
-    new_user.set_password(password)
+    existing_user = User.query.filter_by(username=username).first()
+    if existing_user:
+        return jsonify({"error": "Username already taken"}), 400
 
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify({'message': 'User registered successfully'}), 201
+    try:
+        user = User(username=username)
+        user.set_password(password)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({"message": "User registered successfully"}), 201
+    except Exception as e:
+        # Log the exception or return it in the response for debugging
+        return jsonify({"error": str(e)}), 500
 
 @auth_bp.route('/login', methods=['POST'])
 def login():

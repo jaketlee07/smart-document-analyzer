@@ -2,12 +2,16 @@ import unittest
 from flask import json
 from app import create_app, db
 from app.auth.models import User
+from app.config import TestConfig
+
 
 class AuthTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(config_class='config.TestConfig')
+        self.app = create_app(config_class=TestConfig)
         self.client = self.app.test_client()
+        #User.__table__.create(bind=db.engine, checkfirst=True)
         with self.app.app_context():
+            #User.__table__.create(bind=db.engine, checkfirst=True)
             db.create_all()
 
     def tearDown(self):
@@ -18,19 +22,19 @@ class AuthTestCase(unittest.TestCase):
     def test_user_registration(self):
         # Test a successful registration
         response = self.client.post('/auth/register', json={
-            'username': 'testuser',
+            'username': 'testuser1',
             'password': 'testpassword'
         })
-        data = json.loads(response.data)
         self.assertEqual(response.status_code, 201)
-        self.assertIn('User registered successfully', data['message'])
+        self.assertIn('User registered successfully', json.loads(response.data)['message'])
 
-        # Test registration with existing username
+        # Test registration with an existing username
         response = self.client.post('/auth/register', json={
-            'username': 'testuser',
+            'username': 'testuser1',
             'password': 'anotherpassword'
         })
         self.assertEqual(response.status_code, 400)
+        self.assertIn('Username already taken', json.loads(response.data)['error'])
 
     def test_user_login(self):
         # First, register a user

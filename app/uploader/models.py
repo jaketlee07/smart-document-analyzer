@@ -5,7 +5,7 @@ from app import db
 # db = SQLAlchemy()
 
 class UploadedFile(db.Model):
-    __tablename__ = 'uploaded_file'
+    # __tablename__ = 'uploaded_file'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     type = db.Column(db.String(255), nullable=False)
