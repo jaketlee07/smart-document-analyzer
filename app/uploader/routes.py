@@ -1,14 +1,18 @@
 # app/uploader/routes.py
 import os
-from flask import Blueprint, current_app, request, jsonify
+from flask import Blueprint, current_app, request, jsonify, render_template
 from werkzeug.utils import secure_filename
 from .models import db, UploadedFile
 from datetime import datetime
 
 uploader_bp = Blueprint('uploader', __name__)
 
-@uploader_bp.route('/upload', methods=['POST'])
+@uploader_bp.route('/upload', methods=['GET', 'POST'])
 def upload():
+
+    if request.method == 'GET':
+        return render_template('uploader_form.html')
+    
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
 

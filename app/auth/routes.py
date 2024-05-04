@@ -1,6 +1,6 @@
 # app/auth/routes.py
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from .models import User, db
 from werkzeug.security import check_password_hash
 
@@ -38,18 +38,22 @@ def register():
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-
-        username = request.json.get('username')
-        password = request.json.get('password')
+        username = request.form.get('username')
+        password = request.form.get('password')
         
+        if not username or not password:
+            flash('Username and password are required.', 'error')
+            return render_template('login.html')
+
         user = User.query.filter_by(username=username).first()
     
         if user and user.check_password(password):
-            login_user(user)
-            return redirect(url_for('home.upload'))
+            login_user(user, remember=True)  # Optionally add "remember=True" if you want to remember the session
+            return redirect(url_for('uploader.upload'))
         else:
-            flash('Login failed. Check your username and password.')
+            flash('Login failed. Check your username and password.', 'error')
     
+    # This line handles the GET request to display the login form
     return render_template('login.html')
 
 @auth_bp.route('/logout')

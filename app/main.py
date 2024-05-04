@@ -10,9 +10,9 @@ def home():
     logging.debug("Rendering the uploader_form.html template")
     return render_template('home.html')
 
-@home_bp.route('/upload', methods=['GET', 'POST'])
-def upload():
-    if request.method == 'POST':
-        # Handle file upload here
-        pass
-    return render_template('uploader_form.html')
+# @home_bp.route('/upload', methods=['GET', 'POST'])
+# def upload():
+#     if request.method == 'POST':
+#         # Handle file upload here
+#         pass
+#     return render_template('uploader_form.html')
