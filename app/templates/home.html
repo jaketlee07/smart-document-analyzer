@@ -8,6 +8,7 @@
 <body>
     <h1>Welcome to Smart Document Analyzer</h1>
     <p>Click the button below to log in and start using the tool.</p>
-    <a href="{{ }}"><button>Login</button></a>
+    <a href="{{ url_for('auth.login')}}"><button>Login</button></a>
+    <a href="{{ url_for('auth.register')}}"><button>Register</button></a>
 </body>
 </html>

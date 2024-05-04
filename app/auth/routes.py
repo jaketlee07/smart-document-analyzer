@@ -1,48 +1,59 @@
 # app/auth/routes.py
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
 from .models import User, db
 from werkzeug.security import check_password_hash
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/register', methods=['POST'])
+@auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
-    username = request.json.get('username')
-    password = request.json.get('password')
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if not username or not password:
+            flash("Missing username or password.")
+            return render_template('register.html'), 400
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Username already taken. Please choose a different one.')
+            return render_template('register.html'), 400
+
+        try:
+            user = User(username=username)
+            user.set_password(password)
+            db.session.add(user)
+            db.session.commit()
+            flash("User registered successfully! You can now login.")
+            return redirect(url_for('auth.login'))
+        except Exception as e:
+            # Log the exception or return it in the response for debugging
+            flash(f"An error occurred: {str(e)}")
+            return render_template('register.html'), 500
+    return render_template('register.html')
     
-    if not username or not password:
-        return jsonify({"error": "Missing username or password"}), 400
 
-    existing_user = User.query.filter_by(username=username).first()
-    if existing_user:
-        return jsonify({"error": "Username already taken"}), 400
-
-    try:
-        user = User(username=username)
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-        return jsonify({"message": "User registered successfully"}), 201
-    except Exception as e:
-        # Log the exception or return it in the response for debugging
-        return jsonify({"error": str(e)}), 500
-
-@auth_bp.route('/login', methods=['POST'])
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    username = request.json.get('username')
-    password = request.json.get('password')
+    if request.method == 'POST':
+
+        username = request.json.get('username')
+        password = request.json.get('password')
+        
+        user = User.query.filter_by(username=username).first()
     
-    user = User.query.filter_by(username=username).first()
+        if user and user.check_password(password):
+            login_user(user)
+            return redirect(url_for('home.upload'))
+        else:
+            flash('Login failed. Check your username and password.')
     
-    if user and user.check_password(password):
-        login_user(user)
-        return jsonify({'message': 'User logged in successfully'}), 200
-    
-    return jsonify({'error': 'Invalid username or password'}), 401
+    return render_template('login.html')
 
 @auth_bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return jsonify({'message': 'User logged out successfully'}), 200
+    return redirect(url_for('home.home'))
