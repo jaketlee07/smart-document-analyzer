@@ -1,0 +1,30 @@
+<!-- app/templates/analysis_result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Analysis Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        p { margin: 10px 0; }
+        .analysis-info { background-color: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+    {% if analysis %}
+        <div class="analysis-info">
+            <h2>Document: {{ analysis.uploaded_file.name }}</h2>
+            <p><strong>Sentiment Analysis:</strong> {{ analysis.sentiment }}</p>
+            <p><strong>Summary:</strong> {{ analysis.summary }}</p>
+            <p><strong>Keywords:</strong> {{ analysis.keywords }}</p>
+            <p><strong>Details:</strong> {{ analysis.details }}</p>
+            <p><strong>Analysis Date:</strong> {{ analysis.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        </div>
+    {% else %}
+        <p>No analysis results available.</p>
+    {% endif %}
+</body>
+</html>

@@ -12,6 +12,10 @@
         <button type="submit">Upload</button>
     </form>
 
+    {% if analysis_id %}
+        <a href="{{ url_for('output_generator.generate_output', analysis_id=analysis_id) }}">View Analysis Results</a>
+    {% endif %}
+
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>

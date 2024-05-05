@@ -10,7 +10,7 @@ class Config:
 
     # Database
     SQLALCHEMY_DATABASE_URI = 'postgresql://jake:jake2002@localhost:5432/smartdocumentanalyzerdb'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     # Uploader Config
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
