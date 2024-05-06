@@ -49,7 +49,7 @@ Smart Document Analyzer is a Flask-based web application that leverages advanced
 ### Database Configuration
 
 - Ensure PostgreSQL is installed and running.
-- Create a database named `smart_doc_analyzer`.
+- Create a database named `smart-document-analyzerdb`.
 - Update the database URI in the application's configuration file to match your PostgreSQL settings.
 
 ## Usage
