@@ -1,20 +1,23 @@
 # Smart Document Analyzer
 
 ## Project Overview
-Smart Document Analyzer is a Flask-based web application designed to upload, analyze, and summarize documents. Utilizing Natural Language Processing (NLP), this application can identify key topics, sentiment analysis, and extract named entities from documents. It supports various file formats including PDFs and images, providing a comprehensive analysis of textual content.
+
+Smart Document Analyzer is a Flask-based web application that leverages advanced Natural Language Processing (NLP) techniques to analyze and summarize textual content in uploaded documents. It supports a variety of file formats such as PDFs and text files. The application provides insights by performing sentiment analysis, extracting keywords, and generating concise summaries.
 
 ## Features
-- **Document Upload:** Users can upload documents in multiple formats, including PDFs and images.
-- **Text Extraction:** Converts documents into text for analysis.
-- **Keyword Tagging:** Identifies and tags keywords and topics within the documents.
-- **Sentiment Analysis:** Classifies the sentiment of the text as positive, neutral, or negative.
-- **Entity Recognition:** Identifies names, locations, institutions, and addresses within the text.
-- **Summary Generation:** Produces concise summaries of the documents.
-- **Search Functionality:** Allows searching documents based on keywords, entities, or sentiment.
+
+- **Document Upload:** Supports uploading documents in multiple formats, including PDF and plain text.
+- **Text Extraction:** Automatically converts non-text content into text for analysis.
+- **Keyword Extraction:** Identifies key terms and phrases within the documents.
+- **Sentiment Analysis:** Analyzes and determines the sentiment of the text (positive, neutral, negative).
+- **Summary Generation:** Automatically generates a summary of the main points of the document.
+- **Entity Recognition:** Detects entities like names, places, and dates within the text.
+- **Search Functionality:** Enables users to search within their uploaded documents based on keywords or entities.
 
 ## Installation
 
 ### Prerequisites
+
 - Docker
 - Python 3.9 or higher
 - PostgreSQL
@@ -22,17 +25,20 @@ Smart Document Analyzer is a Flask-based web application designed to upload, ana
 ### Setup Instructions
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/jaketlee07/smart-document-analyzer.git
    cd smart-document-analyzer
    ```
 
 2. **Build the Docker Container**
+
    ```bash
    docker build -t smart-document-analyzer .
    ```
 
 3. **Run the Docker Container**
+
    ```bash
    docker run -p 8000:8000 smart-document-analyzer
    ```
@@ -41,6 +47,7 @@ Smart Document Analyzer is a Flask-based web application designed to upload, ana
    - The application will be available at `http://localhost:8000`.
 
 ### Database Configuration
+
 - Ensure PostgreSQL is installed and running.
 - Create a database named `smart_doc_analyzer`.
 - Update the database URI in the application's configuration file to match your PostgreSQL settings.
@@ -50,6 +57,7 @@ Smart Document Analyzer is a Flask-based web application designed to upload, ana
 After installation, navigate to `http://localhost:8000` in your web browser to access the Smart Document Analyzer.
 
 1. **Uploading Documents:**
+
    - Use the upload form to select and submit your document for analysis.
 
 2. **Viewing Analysis Results:**
@@ -60,7 +68,6 @@ After installation, navigate to `http://localhost:8000` in your web browser to a
 Here are some images of the working Docker
 <img width="1440" alt="Screenshot 2024-03-30 at 12 47 38 AM" src="https://github.com/jaketlee07/smart-document-analyzer/assets/54076176/fc27347b-5d6d-402b-abf4-4c02afa1b7ce">
 <img width="908" alt="Screenshot 2024-03-30 at 12 48 31 AM" src="https://github.com/jaketlee07/smart-document-analyzer/assets/54076176/5a6aaff8-a7b5-4a54-ac03-3912394d4eae">
-
 
 ## License
 

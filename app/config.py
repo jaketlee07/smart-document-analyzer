@@ -23,13 +23,8 @@ class TestConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'  # Use in-memory database for tests
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SERVER_NAME = 'localhost.localdomain:5000'
     # Other testing-specific configurations
-
-    # Uploader Config
-    # UPLOAD_FOLDER = '/uploads'
-    # ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
-
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
     UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
     ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
