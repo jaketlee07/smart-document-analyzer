@@ -12,7 +12,6 @@ Smart Document Analyzer is a Flask-based web application that leverages advanced
 - **Sentiment Analysis:** Analyzes and determines the sentiment of the text (positive, neutral, negative).
 - **Summary Generation:** Automatically generates a summary of the main points of the document.
 - **Entity Recognition:** Detects entities like names, places, and dates within the text.
-- **Search Functionality:** Enables users to search within their uploaded documents based on keywords or entities.
 
   ## Demo Video
   [![DEMO VIDEO](https://github.com/jaketlee07/smart-document-analyzer/assets/54076176/10ed7483-09ca-4b14-9bba-aa63de8ccb34)](https://drive.google.com/file/d/1Qzx9IQejnzukL-xVSQFjRhjQpFm5k0HQ/view?usp=sharing)
