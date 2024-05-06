@@ -1,22 +1,46 @@
-version: '3'
+# version: '3'
+# services:
+#   web:
+#     build: .
+#     command: flask run
+#     volumes:
+#       - .:/app
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - db
+#     environment:
+#       - FLASK_APP=run.py
+#       - FLASK_RUN_HOST=0.0.0.0
+#   db:
+#     image: postgres
+#     environment:
+#       POSTGRES_USER: jake
+#       POSTGRES_PASSWORD: jake2002
+#       POSTGRES_DB: smartdocumentanalyzerdb
+#     ports:
+#       - "5432:5432"
+
+version: "3.8"
 services:
   web:
     build: .
     command: flask run
-    volumes:
-      - .:/app
     ports:
       - "8000:8000"
-    depends_on:
-      - db
     environment:
       - FLASK_APP=run.py
       - FLASK_RUN_HOST=0.0.0.0
+      - DATABASE_URL=postgresql://user:password@db:5432/smart_document_analyzer
+    depends_on:
+      - db
   db:
     image: postgres
     environment:
-      POSTGRES_USER: jake
-      POSTGRES_PASSWORD: jake2002
-      POSTGRES_DB: smartdocumentanalyzerdb
-    ports:
-      - "5432:5432"
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=smart_document_analyzer
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

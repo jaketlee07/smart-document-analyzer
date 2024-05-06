@@ -9,7 +9,7 @@ class Config:
     FLASK_ENV = 'development'
 
     # Database
-    SQLALCHEMY_DATABASE_URI = 'postgresql://jake:jake2002@localhost:5432/smartdocumentanalyzerdb'
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Uploader Config
